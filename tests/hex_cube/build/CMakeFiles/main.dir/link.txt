@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/main.dir/readHex.cpp.o  -o main   -L/usr/lib/python3.8/config-3.8-x86_64-linux-gnu  -Wl,-rpath,/usr/lib/python3.8/config-3.8-x86_64-linux-gnu -lpython3.8 

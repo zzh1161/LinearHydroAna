@@ -1,3 +1,0 @@
-/home/zhang-zh/workspace/CG/ComputerCamp/LinearHydroAna/tests/hex_cube/build/CMakeFiles/rebuild_cache.dir
-/home/zhang-zh/workspace/CG/ComputerCamp/LinearHydroAna/tests/hex_cube/build/CMakeFiles/edit_cache.dir
-/home/zhang-zh/workspace/CG/ComputerCamp/LinearHydroAna/tests/hex_cube/build/CMakeFiles/main.dir
