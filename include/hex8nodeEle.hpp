@@ -156,7 +156,7 @@ void hex8node::calBMatrix(MatrixXr &TV, hex8node::funcMat &ele_BMat, hex8node::f
             res(3, 3*i+2) =  0;
             res(4, 3*i+0) =  0;
             res(4, 3*i+1) =  coef_g(s,t,n)*dNds(i+1,s,t,n) - coef_h(s,t,n)*dNdt(i+1,s,t,n) + coef_i(s,t,n)*dNdn(i+1,s,t,n);
-            res(4, 3*i+2) = -coef_d(s,t,n)-dNds(i+1,s,t,n) + coef_e(s,t,n)*dNdt(i+1,s,t,n) - coef_f(s,t,n)*dNdn(i+1,s,t,n);
+            res(4, 3*i+2) = -coef_d(s,t,n)*dNds(i+1,s,t,n) + coef_e(s,t,n)*dNdt(i+1,s,t,n) - coef_f(s,t,n)*dNdn(i+1,s,t,n);
             res(5, 3*i+0) =  coef_g(s,t,n)*dNds(i+1,s,t,n) - coef_h(s,t,n)*dNdt(i+1,s,t,n) + coef_i(s,t,n)*dNdn(i+1,s,t,n);
             res(5, 3*i+1) =  0;
             res(5, 3*i+2) =  coef_a(s,t,n)*dNds(i+1,s,t,n) - coef_b(s,t,n)*dNdt(i+1,s,t,n) + coef_c(s,t,n)*dNdn(i+1,s,t,n);

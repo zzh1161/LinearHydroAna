@@ -7,6 +7,9 @@
 namespace lhfea{
 
 // #define NOT_KEEP_BMat
+#if __GNUC__ > 7
+    #define USE_FUNCTOR_SOLVER
+#endif
 
 struct shapeInterface
 {

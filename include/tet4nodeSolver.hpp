@@ -3,14 +3,11 @@
 
 #include "info.hpp"
 #include "readTetMesh.hpp"
+#include "readCondition.hpp"
 #include "EigenLibSolver.hpp"
 #include "tet4nodeEle.hpp"
 
 namespace lhfea{
-
-#if __GNUC__ > 7
-    #define USE_FUNCTOR_SOLVER
-#endif
 
 #ifdef USE_FUNCTOR_SOLVER
 struct _Tet4NodeSolver

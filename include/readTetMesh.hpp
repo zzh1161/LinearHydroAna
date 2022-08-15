@@ -8,7 +8,6 @@
 
 #include <spdlog/spdlog.h>
 #include <mshio/mshio.h>
-#include <eigen3/Eigen/Eigen>
 // #include <boost/filesystem.hpp>
 
 #include "info.hpp"
@@ -68,31 +67,6 @@ bool readTetMesh(const std::string& filePath, MatrixXr& TV, Eigen::MatrixXi& TT)
     // spdlog::info("tet mesh loaded with {:d} particles, {:d} tets, and {:d} surface triangles.",
     //              TV.rows(), TT.rows(), SF.rows());
 
-    return true;
-}
-
-bool readCondition(std::string path, realn &E, realn &nu,
-            std::unordered_map<int,std::vector<realn>> &bound)
-{
-    std::ifstream in(path);
-    in >> E >> nu;
-    try{
-        while(!in.fail()){
-            int idx; in >> idx;
-            realn tmp;
-            std::vector<realn> list;
-            for(int i=0; i<9; i++){
-                in >> tmp;
-                list.push_back(tmp);
-            }
-            bound.emplace(idx, list);
-        }
-    }
-    catch(...){
-        spdlog::error("The input file does not meet the format requirements.");
-        exit(-1);
-    }
-    in.close();
     return true;
 }
 

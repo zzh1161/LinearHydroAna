@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Aug 12 10:13:06 2022
+# Make data base, printed on Mon Aug 15 15:06:25 2022
 
 # Variables
 
@@ -55,7 +55,7 @@ NVM_BIN = /home/zhang-zh/.nvm/versions/node/v16.15.1/bin
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-c7ba13db-b4a1-47b9-824e-fd8a986f5892.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-c1888a1c-42bb-474f-ae21-dadee25e0234.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -63,7 +63,7 @@ LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:
 # automatic
 %F = $(notdir $%)
 # environment
-DISPLAY = 172.20.240.1:0
+DISPLAY = 172.21.64.1:0
 # environment
 PWD = /home/zhang-zh/workspace/CG/ComputerCamp/LinearHydroAna
 # default
@@ -71,7 +71,7 @@ PWD = /home/zhang-zh/workspace/CG/ComputerCamp/LinearHydroAna
 # environment
 WSL_INTEROP = /run/WSL/11_interop
 # environment
-WT_SESSION = 06eaec79-6fd7-4a41-b266-52baf7f2a683
+WT_SESSION = bfc8c299-d7f9-4935-8592-70ba36f84623
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -89,7 +89,7 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
-windows_host = 172.20.240.1
+windows_host = 172.21.64.1
 # environment
 MAKELEVEL := 0
 # default
@@ -225,12 +225,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 14 / storage = 119 B / avg = 8 B
-# current buf: size = 8162 B / used = 119 B / count = 14 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 14 / storage = 117 B / avg = 8 B
+# current buf: size = 8162 B / used = 117 B / count = 14 / avg = 8 B
 
 # strcache performance: lookups = 17 / hit rate = 17%
 # hash-table stats:
 # Load=14/8192=0%, Rehash=0, Collisions=1/17=6%
-# Finished Make data base on Fri Aug 12 10:13:06 2022
+# Finished Make data base on Mon Aug 15 15:06:25 2022
 
  
