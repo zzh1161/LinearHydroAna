@@ -65,6 +65,8 @@
         "concepts": "cpp",
         "numbers": "cpp",
         "semaphore": "cpp",
-        "stop_token": "cpp"
+        "stop_token": "cpp",
+        "cfenv": "cpp",
+        "unordered_set": "cpp"
     }
 }
