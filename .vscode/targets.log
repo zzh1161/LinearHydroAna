@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Aug 16 15:11:48 2022
+# Make data base, printed on Wed Aug 17 10:30:08 2022
 
 # Variables
 
@@ -55,7 +55,7 @@ NVM_BIN = /home/zhang-zh/.nvm/versions/node/v16.15.1/bin
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-57e40b34-6b4c-4968-b7d9-9742173040f7.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-aa6fb7e9-4c7d-4327-8a00-e59a923f5667.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -71,7 +71,7 @@ PWD = /home/zhang-zh/workspace/CG/ComputerCamp/LinearHydroAna
 # environment
 WSL_INTEROP = /run/WSL/11_interop
 # environment
-WT_SESSION = 9006e7d7-67b7-4f56-80aa-f99357f47f00
+WT_SESSION = ea8ef120-330a-4598-be45-b4e35780f00a
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -231,6 +231,6 @@ GNUmakefile:
 # strcache performance: lookups = 17 / hit rate = 17%
 # hash-table stats:
 # Load=14/8192=0%, Rehash=0, Collisions=1/17=6%
-# Finished Make data base on Tue Aug 16 15:11:48 2022
+# Finished Make data base on Wed Aug 17 10:30:08 2022
 
  

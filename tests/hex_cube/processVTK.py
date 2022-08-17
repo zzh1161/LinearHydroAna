@@ -17,11 +17,6 @@ def transHexFile():
                 fout.write(str(ele[i])+" ")
             fout.write(str(ele[7])+"\n")
 
-def readHexFile(TV, TT):
-    mesh = meshio.vtk.read("./input/cube.vtk")
-    TV = mesh.points
-    TT = mesh.cells[0].data
-
 def outputHexVTK():
     mesh = meshio.vtk.read("./input/cube.vtk")
     result_uvw = np.array(pd.DataFrame(columns=range(3)))
@@ -39,6 +34,3 @@ def outputHexVTK():
     points = np.array(points, dtype=np.float64)
     ano_mesh = meshio.Mesh(points, cells)
     ano_mesh.write('./output/result.vtk')
-
-# if __name__ == '__main__':
-#     outputHexVTK()
