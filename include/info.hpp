@@ -23,6 +23,11 @@ MAKE_TYPEDEFS(realn, r, -1, X)
 using SpMatXr = Eigen::SparseMatrix<realn>;
 using TripXr  = Eigen::Triplet<realn>;
 
+enum class SolverType{
+    Eigen = 1,
+    cholmod = 2
+};
+
 } // namespace lhfea
 
 

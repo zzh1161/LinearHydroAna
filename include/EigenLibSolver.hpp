@@ -22,6 +22,7 @@ protected:
 public:
     void set_pattern(const std::vector<std::set<int>>& vNeighbor);
     void set_pattern(const Eigen::SparseMatrix<double>& mtr); //NOTE: mtr must be SPD
+    void write(const char *filePath, const Eigen::VectorXd& rhs);
 
     void analyze_pattern(void);
 
@@ -60,6 +61,14 @@ void EigenLibSolver<vectorTypeI, vectorTypeS>::set_pattern(const Eigen::SparseMa
 {
     Base::numRows = static_cast<int>(mtr.rows());
     coefMtr = mtr;
+}
+
+template <typename vectorTypeI, typename vectorTypeS>
+void EigenLibSolver<vectorTypeI, vectorTypeS>::write(const char *filePath, const Eigen::VectorXd& rhs)
+{
+    std::ofstream out(filePath);
+    out << coefMtr;
+    out.close();
 }
 
 template <typename vectorTypeI, typename vectorTypeS>

@@ -16,7 +16,7 @@ int main()
     std::cout << "TV: \n" << TV << std::endl << std::endl
               << "TT: \n" << TT << std::endl << std::endl;
 
-    tet4nodeSolver(filePath, condPath, result_uvw);
+    tet4nodeSolver(filePath, condPath, result_uvw, SolverType::cholmod);
     
     for(int i=0; i<14; i++){
         for(int j=0; j<3; j++){
@@ -36,7 +36,7 @@ int main()
             j += 3;
         }
     }
-    mshio::save_msh("./output/result.msh", spec);
+    mshio::save_msh("./output/result_cube.msh", spec);
 
     return 0;
 }

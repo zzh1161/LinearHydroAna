@@ -1,5 +1,5 @@
 XX = g++
-FLAG = -lmshio
+FLAG = -lmshio -lamd -lcamd -lccolamd -lcolamd -lblas -lcholmod
 
 default:
 	$(XX) -o main main.cpp $(FLAG)

@@ -13,7 +13,13 @@
                 "-I/usr/lib/python3.8/config-3.8-x86_64-linux-gnu",
                 "-I/usr/include/python3.8",
                 "-lpython3.8",
-                "-lmshio"
+                "-lmshio",
+                "-lamd",
+                "-lcamd",
+                "-lccolamd",
+                "-lcolamd",
+                "-lblas",
+                "-lcholmod"
             ],
             "options": {
                 "cwd": "${fileDirname}"

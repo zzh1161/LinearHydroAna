@@ -162,7 +162,7 @@ public:
         }
     }
     virtual void setZeroCol(int colI){
-        assert(colI<numRows);
+        assert(colI < numRows);
         for(int rowI=0; rowI<numRows; ++rowI){
             const auto finder = IJ2aI[rowI].find(colI);
             if(finder != IJ2aI[rowI].end()){
@@ -264,6 +264,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////////////
 //////////////////////// Definitions of Some Funtions ///////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
+
 template <typename vectorTypeI, typename vectorTypeS>
 void LinSysSolver<vectorTypeI, vectorTypeS>::set_pattern(const std::vector<std::set<int>>& vNeighbor)
 {

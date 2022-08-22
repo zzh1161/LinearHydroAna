@@ -18,7 +18,7 @@ int main()
     //           << "TT:\n" << TT << std::endl << std::endl;
 
     VectorXr result_uvw;
-    tet4nodeSolver(filePath, condPath, result_uvw);
+    tet4nodeSolver(filePath, condPath, result_uvw, SolverType::Eigen);
 
     std::ofstream out("./output/result_uvw.txt");
     for(int i=0; i<result_uvw.size(); i+=3){

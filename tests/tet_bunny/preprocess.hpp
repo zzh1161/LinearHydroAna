@@ -21,9 +21,9 @@ bool pre_condition_process_bunny(std::string filePath, std::string condPath)
     std::vector<int> bottom_numb;
     std::vector<int> top_numb;
     for(int i=0; i<TV.rows(); ++i){
-        if(TV(i,1) < -0.28)
+        if(TV(i,1) < -0.24)
             bottom_numb.push_back(i);
-        if(TV(i,1) > 2.60)
+        if(TV(i,1) > 2.50)
             top_numb.push_back(i);
     }
     for(auto i : bottom_numb){

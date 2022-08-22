@@ -67,6 +67,10 @@
         "semaphore": "cpp",
         "stop_token": "cpp",
         "cfenv": "cpp",
-        "unordered_set": "cpp"
+        "unordered_set": "cpp",
+        "codecvt": "cpp",
+        "forward_list": "cpp",
+        "valarray": "cpp",
+        "core": "cpp"
     }
 }

@@ -24,9 +24,9 @@ bool pre_condition_process_armadillo(std::string filePath, std::string condPath)
     for(int i=0; i<TV.rows(); ++i){
         if(TV(i,1) < 22)
             bottom_numb.push_back(i);
-        if(TV(i,0) > 63)
+        if(TV(i,0) > 57)
             right_numb.push_back(i);
-        if(TV(i,0) < -63)
+        if(TV(i,0) < -57)
             left_numb.push_back(i);
     }
     for(auto i : bottom_numb){
@@ -37,12 +37,12 @@ bool pre_condition_process_armadillo(std::string filePath, std::string condPath)
     for(auto i : left_numb){
         out << i << " " << 0 << " " << 0 << " " << 0 << " " 
             << 0 << " " << 0 << " " << 0 << " "
-            << 3e5 << " " << 0 << " " << 0 << std::endl;
+            << 2e6 << " " << 0 << " " << 0 << std::endl;
     }
     for(auto i : right_numb){
         out << i << " " << 0 << " " << 0 << " " << 0 << " " 
             << 0 << " " << 0 << " " << 0 << " "
-            << -3e5 << " " << 0 << " " << 0 << std::endl;
+            << -2e6 << " " << 0 << " " << 0 << std::endl;
     }
 
     out.close();

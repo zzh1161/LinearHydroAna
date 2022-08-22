@@ -1,10 +1,13 @@
 #ifndef TET_4_NODE_SOLVER_HPP
 #define TET_4_NODE_SOLVER_HPP
 
+#include <memory>
+
 #include "info.hpp"
 #include "readTetMesh.hpp"
 #include "readCondition.hpp"
 #include "EigenLibSolver.hpp"
+#include "CHOLMODSolver.hpp"
 #include "tet4nodeEle.hpp"
 
 namespace lhfea{
@@ -12,18 +15,18 @@ namespace lhfea{
 #ifdef USE_FUNCTOR_SOLVER
 struct _Tet4NodeSolver
 {
-    void solve(std::string meshPath, std::string condiPath, VectorXr &result_uvw) const;
-    void operator()(std::string meshPath, std::string condiPath, VectorXr &result_uvw) const{
-        solve(meshPath, condiPath, result_uvw);
+    void solve(std::string meshPath, std::string condiPath, VectorXr &result_uvw, SolverType solver) const;
+    void operator()(std::string meshPath, std::string condiPath, VectorXr &result_uvw, SolverType solver) const{
+        solve(meshPath, condiPath, result_uvw, solver);
     }
 };
 inline constexpr _Tet4NodeSolver tet4nodeSolver;
 #endif
 
 #ifdef USE_FUNCTOR_SOLVER
-void _Tet4NodeSolver::solve(std::string meshPath, std::string condiPath, VectorXr &result_uvw) const
+void _Tet4NodeSolver::solve(std::string meshPath, std::string condiPath, VectorXr &result_uvw, SolverType solver) const
 #else
-void tet4nodeSolver(std::string meshPath, std::string condiPath, VectorXr &result_uvw)
+void tet4nodeSolver(std::string meshPath, std::string condiPath, VectorXr &result_uvw, SolverType solver)
 #endif
 {
     /* Get info from .msh format files */
@@ -46,7 +49,7 @@ void tet4nodeSolver(std::string meshPath, std::string condiPath, VectorXr &resul
        vNeighbor[TT(i,2)].insert(TT(i,0)); vNeighbor[TT(i,2)].insert(TT(i,1)); vNeighbor[TT(i,2)].insert(TT(i,3));
        vNeighbor[TT(i,3)].insert(TT(i,0)); vNeighbor[TT(i,3)].insert(TT(i,1)); vNeighbor[TT(i,3)].insert(TT(i,2));   
     }
-    std::cout << "Set vNeigehbor success!" << std::endl;
+    std::cout << "Set vNeigehbor successfully!" << std::endl;
 
     /* Initialize tethrahedrons */
     std::vector<tet4node> tethrahedrons;
@@ -59,22 +62,27 @@ void tet4nodeSolver(std::string meshPath, std::string condiPath, VectorXr &resul
         Tet.calStiffnessMat(TV, E, nu);
         tethrahedrons.push_back(Tet);
     }
-    std::cout << "Initialize tethrahedrons success!" << std::endl;
+    std::cout << "Initialize tethrahedrons successfully!" << std::endl;
 
     /* Assemble stiffness matrices */
-    SIM::EigenLibSolver<Eigen::VectorXi, VectorXr> LHsolver;
-    LHsolver.set_pattern(vNeighbor);
-    LHsolver.analyze_pattern();
+    std::unique_ptr<SIM::LinSysSolver<Eigen::VectorXi,VectorXr>> LHsolver;
+    if(solver == SolverType::Eigen)
+        LHsolver = std::make_unique<SIM::EigenLibSolver<Eigen::VectorXi,VectorXr>>();
+    else if(solver == SolverType::cholmod)
+        LHsolver = std::make_unique<SIM::CHOLMODSolver<Eigen::VectorXi,VectorXr>>();
+    LHsolver->set_pattern(vNeighbor);
+    LHsolver->analyze_pattern();
+    LHsolver->setZero();
     for(auto &tet : tethrahedrons){
         for(int i=0; i<4; i++){
             for(int j=0; j<4; j++){
                 for(int m=0; m<3; m++)
                     for(int n=0; n<3; n++)
-                        LHsolver.addCoeff(3*tet.node_num[i]+m, 3*tet.node_num[j]+n, tet.ele_stiff(3*i+m, 3*j+n));
+                        LHsolver->addCoeff(3*tet.node_num[i]+m, 3*tet.node_num[j]+n, tet.ele_stiff(3*i+m, 3*j+n));
             }
         }
     }
-    std::cout << "Assemble stiffness matrices success!" << std::endl;
+    std::cout << "Assemble stiffness matrices successfully!" << std::endl;
 
     /* Set boundary conditions and RHS */
     VectorXr rhs(TV.rows()*3,1);
@@ -82,8 +90,8 @@ void tet4nodeSolver(std::string meshPath, std::string condiPath, VectorXr &resul
         auto list = iter->second;
         for(int i=0; i<3; ++i){
             if(list[i] == 1){
-                LHsolver.setUnit_row(3*iter->first+i);
-                LHsolver.setUnit_col(3*iter->first+i, vNeighbor[iter->first]);
+                LHsolver->setUnit_row(3*iter->first+i);
+                LHsolver->setUnit_col(3*iter->first+i, vNeighbor[iter->first]);
                 rhs[iter->first*3+i] = list[i+3];
             }
             else{
@@ -91,12 +99,12 @@ void tet4nodeSolver(std::string meshPath, std::string condiPath, VectorXr &resul
             }
         }
     }
-    std::cout << "Set boundary conditions and RHS success!" << std::endl;
+    std::cout << "Set boundary conditions and RHS successfully!" << std::endl;
 
     /* Solve the linear system */
-    LHsolver.factorize();
-    LHsolver.solve(rhs, result_uvw);
-    std::cout << "Solve the linear system success!" << std::endl;
+    LHsolver->factorize();
+    LHsolver->solve(rhs, result_uvw);
+    std::cout << "Solve the linear system successfully!" << std::endl;
 }
 
 
