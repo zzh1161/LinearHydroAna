@@ -11,4 +11,4 @@ include_directories("/usr/local/include")
 
 add_executable(main main.cpp)
 
-target_link_libraries(main -lpython3.8 -lmshio)
+target_link_libraries(main -lpython3.8 -lmshio -lamd -lcamd -lccolamd -lcolamd -lblas -lcholmod)

@@ -22,11 +22,11 @@ bool pre_condition_process_armadillo(std::string filePath, std::string condPath)
     std::vector<int> left_numb;
     std::vector<int> right_numb;
     for(int i=0; i<TV.rows(); ++i){
-        if(TV(i,1) < 22)
+        if(TV(i,1) < 21.5)
             bottom_numb.push_back(i);
-        if(TV(i,0) > 57)
+        if(TV(i,0) > 52 && TV(i,1) > 21.5)
             right_numb.push_back(i);
-        if(TV(i,0) < -57)
+        if(TV(i,0) < -52 && TV(i,1) > 21.5)
             left_numb.push_back(i);
     }
     for(auto i : bottom_numb){

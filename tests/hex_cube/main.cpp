@@ -51,7 +51,7 @@ int main()
     conditionProcess(filePath, condPath);
 
     VectorXr result_uvw;
-    hex8nodeSolver(filePath, condPath, result_uvw);
+    hex8nodeSolver(filePath, condPath, result_uvw, SolverType::cholmod);
 
     std::ofstream outf("./output/result_uvw.txt");
     for(int i=0; i<result_uvw.size(); i+=3){

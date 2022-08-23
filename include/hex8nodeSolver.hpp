@@ -1,28 +1,31 @@
 #ifndef HEX_8_NODE_SOLVER_HPP
 #define HEX_8_NODE_SOLVER_HPP
 
+#include <memory>
+
 #include "info.hpp"
 #include "readHexMesh.hpp"
 #include "readCondition.hpp"
 #include "hex8nodeEle.hpp"
 #include "EigenLibSolver.hpp"
+#include "CHOLMODSolver.hpp"
 
 namespace lhfea{
 
 #ifdef USE_FUNCTOR_SOLVER
 struct _Hex8NodeSolver{
-    void solve(std::string filePath, std::string condPath, VectorXr &result_uvw) const;
-    void operator()(std::string filePath, std::string condPath, VectorXr &result_uvw) const{
-        solve(filePath, condPath, result_uvw);
+    void solve(std::string filePath, std::string condPath, VectorXr &result_uvw, SolverType solver) const;
+    void operator()(std::string filePath, std::string condPath, VectorXr &result_uvw, SolverType solver) const{
+        solve(filePath, condPath, result_uvw, solver);
     }
 };
 inline constexpr _Hex8NodeSolver hex8nodeSolver;
 #endif
 
 #ifdef USE_FUNCTOR_SOLVER
-void _Hex8NodeSolver::solve(std::string filePath, std::string condPath, VectorXr &result_uvw) const
+void _Hex8NodeSolver::solve(std::string filePath, std::string condPath, VectorXr &result_uvw, SolverType solver) const
 #else
-void hex8nodeSolver(std::string filePath, std::string condPath, VectorXr &result_uvw)
+void hex8nodeSolver(std::string filePath, std::string condPath, VectorXr &result_uvw, SolverType solver)
 #endif
 {
     /* Get info from .in format files processed by python */
@@ -57,15 +60,20 @@ void hex8nodeSolver(std::string filePath, std::string condPath, VectorXr &result
     std::cout << "Initialize hexes success!" << std::endl;
 
     /* Assemble stiffness matrices */
-    SIM::EigenLibSolver<Eigen::VectorXi, VectorXr> LHsolver;
-    LHsolver.set_pattern(vNeighbor);
-    LHsolver.analyze_pattern();
+    std::unique_ptr<SIM::LinSysSolver<Eigen::VectorXi, VectorXr>> LHsolver;
+    if(solver == SolverType::Eigen)
+        LHsolver = std::make_unique<SIM::EigenLibSolver<Eigen::VectorXi, VectorXr>>();
+    else if(solver == SolverType::cholmod)
+        LHsolver = std::make_unique<SIM::CHOLMODSolver<Eigen::VectorXi, VectorXr>>();
+    LHsolver->set_pattern(vNeighbor);
+    LHsolver->analyze_pattern();
+    LHsolver->setZero();
     for(auto &hex : hexes){
         for(int i=0; i<8; i++){
             for(int j=0; j<8; j++){
                 for(int m=0; m<3; m++)
                     for(int n=0; n<3; n++)
-                        LHsolver.addCoeff(3*hex.node_num[i]+m, 3*hex.node_num[j]+n, hex.ele_stiff(3*i+m, 3*j+n));
+                        LHsolver->addCoeff(3*hex.node_num[i]+m, 3*hex.node_num[j]+n, hex.ele_stiff(3*i+m, 3*j+n));
             }
         }
     }
@@ -77,8 +85,8 @@ void hex8nodeSolver(std::string filePath, std::string condPath, VectorXr &result
         auto list = iter->second;
         for(int i=0; i<3; ++i){
             if(list[i] == 1){
-                LHsolver.setUnit_row(3*iter->first+i);
-                LHsolver.setUnit_col(3*iter->first+i, vNeighbor[iter->first]);
+                LHsolver->setUnit_row(3*iter->first+i);
+                LHsolver->setUnit_col(3*iter->first+i, vNeighbor[iter->first]);
                 rhs[iter->first*3+i] = list[i+3];
             }
             else{
@@ -89,8 +97,8 @@ void hex8nodeSolver(std::string filePath, std::string condPath, VectorXr &result
     std::cout << "Set boundary conditions and RHS success!" << std::endl;
 
     /* Solve the linear system */
-    LHsolver.factorize();
-    LHsolver.solve(rhs, result_uvw);
+    LHsolver->factorize();
+    LHsolver->solve(rhs, result_uvw);
     std::cout << "Solve the linear system success!" << std::endl;
 }
 
