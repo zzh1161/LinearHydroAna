@@ -71,6 +71,8 @@
         "codecvt": "cpp",
         "forward_list": "cpp",
         "valarray": "cpp",
-        "core": "cpp"
+        "core": "cpp",
+        "eigen": "cpp",
+        "dense": "cpp"
     }
 }

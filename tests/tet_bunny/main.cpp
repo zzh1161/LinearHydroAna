@@ -11,12 +11,6 @@ int main()
 
     pre_condition_process_bunny(filePath, condPath);
 
-    // MatrixXr TV;
-    // MatrixXi TT;
-    // readTetMesh(filePath, TV, TT);
-    // std::cout << "TV:\n" << TV << std::endl << std::endl
-    //           << "TT:\n" << TT << std::endl << std::endl;
-
     VectorXr result_uvw;
     tet4nodeSolver(filePath, condPath, result_uvw, SolverType::cholmod);
 
