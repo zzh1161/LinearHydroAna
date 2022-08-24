@@ -41,3 +41,18 @@
 + CMake 3.16.3
 + Eigen 3.3.7
 + SuiteSparse 5.7.1
+
+编译：
+
++ 在hex测试样例中，执行
+
+  ```bash
+  mkdir build && cd build
+  cmake ..
+  make
+  ```
+
+  完成编译，执行 `./main` 运行程序
+
++ 在tet测试样例中，执行 `make` 完成编译，执行 `./main` 运行程序
+
