@@ -33,7 +33,7 @@
 
 ## 编译与运行
 
-代码作者本地具有如下环境：
+代码作者本地具有如下环境和软件：
 
 + Ubuntu 20.04
 + g++(GCC) 11.2.0 (C++20)
@@ -41,6 +41,8 @@
 + CMake 3.16.3
 + Eigen 3.3.7
 + SuiteSparse 5.7.1
++ [MshIO](https://github.com/qnzhou/MshIO)
++ [meshio 5.3.4](https://github.com/nschloe/meshio)
 
 编译：
 
