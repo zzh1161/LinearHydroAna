@@ -76,20 +76,21 @@ Compiling:
    node force vector: $[P_{x1}, P_{y1}, P_{z1}, P_{x2}, P_{y2}, P_{z2}, P_{x3}, P_{y3}, P_{z3}, P_{x4}, P_{y4}, P_{z4}]^T$
 
 2. **displacement field description**
+
    $$
-   \left.\begin{align*}
+   \begin{align*}
    u(x,y,z) &= a_0+a_1x+a_2y+a_3z \\
    v(x,y,z) &= b_0+b_1x+b_2y+b_3z \\
    w(x,y,z) &= c_0+c_1x+c_2y+c_3z
-   \end{align*}\right\}
+   \end{align*}
    $$
 
    $$
-   \left\{\begin{align*}
+   \begin{align*}
    u(x,y,z) &= N_1(x,y,z)u_1+N_2u_2+N_3u_3+N_4u_4 \\
    v(x,y,z) &= N_1(x,y,z)v_1+N_2v_2+N_3v_3+N_4v_4 \\
    w(x,y,z) &= N_1(x,y,z)w_1+N_2w_2+N_3w_3+N_4w_4
-   \end{align*}\right.
+   \end{align*}
    $$
 
    $$
@@ -104,6 +105,7 @@ Compiling:
    $$
 
 3. **strain field**
+
    $$
    \begin{align*}
    \mathbf{\epsilon}(x,y,z) = \begin{bmatrix}\epsilon_{xx}\\\epsilon_{yy}\\\epsilon_{zz}\\\epsilon_{xy}\\\epsilon_{yz}\\\epsilon_{zx}\end{bmatrix}=\begin{bmatrix}
@@ -118,11 +120,13 @@ Compiling:
    $$
 
 4. **stress field**
+
    $$
    \mathbf{\sigma} = \mathbf{D}\cdot\mathbf{\epsilon} = \mathbf{D}\cdot\mathbf{B}\cdot\mathbf{q}^e=\mathbf{S}\cdot\mathbf{q}^e
    $$
 
 5. **principle of minimum potential energy**
+
    $$
    \begin{align*}
    \Pi^e &= \frac{1}{2}\int_{\Omega^e}\mathbf{\sigma}^T\mathbf{\epsilon}\ d\Omega - \left[\int_{\Omega^e}\overline{\mathbf{b}}^T\mathbf{u}\ d\Omega+\int_{S^e_p}\overline{\mathbf{p}}^T\mathbf{u}\ dA\right] \\
