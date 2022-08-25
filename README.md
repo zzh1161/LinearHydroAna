@@ -71,9 +71,9 @@ Compiling:
 
    geometric coordinates: $(x_i, y_i, z_i)$
 
-   node displacement vector: $\[u_1, v_1, w_1, u_2, v_2, w_2, u_3, v_3, w_3, u_4, v_4, w_4\]^T $
+   node displacement vector: $(u_1, v_1, w_1, u_2, v_2, w_2, u_3, v_3, w_3, u_4, v_4, w_4)^T$
 
-   node force vector: $\[P_{x1}, P_{y1}, P_{z1}, P_{x2}, P_{y2}, P_{z2}, P_{x3}, P_{y3}, P_{z3}, P_{x4}, P_{y4}, P_{z4}\]^T $
+   node force vector: $(P_{x1}, P_{y1}, P_{z1}, P_{x2}, P_{y2}, P_{z2}, P_{x3}, P_{y3}, P_{z3}, P_{x4}, P_{y4}, P_{z4})^T$
 
 2. **displacement field description**
 
