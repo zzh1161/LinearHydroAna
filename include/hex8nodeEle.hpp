@@ -12,7 +12,8 @@ struct hex8node : public shapeInterface
 
     // realn ele_vol; // not necessary
 #ifndef NOT_KEEP_BMat
-    funcMat ele_BMat;
+    funcMat ele_BMat;  // To reduce the amount of calculations, let ele_BMat represent B*det(J),
+                       // i.e. B == ele_BMat/Jacobi.determinant()
     funcMat Jacobi;
 #endif
 
@@ -51,8 +52,10 @@ void hex8node::calStiffnessMat(MatrixXr &TV, realn E, realn nu)
         for(int j=0; j<3; j++){
             for(int i=0; i<3; i++){
                 auto B = ele_BMat(intpont[i],intpont[j],intpont[m]);
-                ele_stiff += B.transpose()*ele_DMat*B*
-                    Jacobi(intpont[i],intpont[j],intpont[m]).determinant()*(intwght[m]*intwght[j]*intwght[i]);
+                ele_stiff += B.transpose()*ele_DMat*B*(intwght[m]*intwght[j]*intwght[i])*
+                             Jacobi(intpont[i],intpont[j],intpont[m]).determinant();
+                // ele_stiff += B.transpose()*ele_DMat*B*(intwght[m]*intwght[j]*intwght[i])/
+                //              Jacobi(intpont[i],intpont[j],intpont[m]).determinant();
             }
         }
     }

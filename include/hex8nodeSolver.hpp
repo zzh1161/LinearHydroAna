@@ -47,7 +47,7 @@ void hex8nodeSolver(std::string filePath, std::string condPath, VectorXr &result
             }
         }
     }
-    std::cout << "Set vNeigehbor success!" << std::endl;
+    std::cout << "Set vNeigehbor successfully!" << std::endl;
 
     /* Initialize hexes */
     std::vector<hex8node> hexes;
@@ -57,7 +57,7 @@ void hex8nodeSolver(std::string filePath, std::string condPath, VectorXr &result
         Hex.calStiffnessMat(TV, E, nu);
         hexes.push_back(Hex);
     }
-    std::cout << "Initialize hexes success!" << std::endl;
+    std::cout << "Initialize hexes successfully!" << std::endl;
 
     /* Assemble stiffness matrices */
     std::unique_ptr<SIM::LinSysSolver<Eigen::VectorXi, VectorXr>> LHsolver;
@@ -77,7 +77,7 @@ void hex8nodeSolver(std::string filePath, std::string condPath, VectorXr &result
             }
         }
     }
-    std::cout << "Assemble stiffness matrices success!" << std::endl;
+    std::cout << "Assemble stiffness matrices successfully!" << std::endl;
 
     /* Set boundary conditions and RHS */
     VectorXr rhs(TV.rows()*3,1);
@@ -94,12 +94,12 @@ void hex8nodeSolver(std::string filePath, std::string condPath, VectorXr &result
             }
         }
     }
-    std::cout << "Set boundary conditions and RHS success!" << std::endl;
+    std::cout << "Set boundary conditions and RHS successfully!" << std::endl;
 
     /* Solve the linear system */
     LHsolver->factorize();
     LHsolver->solve(rhs, result_uvw);
-    std::cout << "Solve the linear system success!" << std::endl;
+    std::cout << "Solve the linear system successfully!" << std::endl;
 }
 
 } // namespace lhfea

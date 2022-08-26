@@ -2,7 +2,7 @@
 
 <h1 align = "center">Linear Hydrostatic Analysis</h1>
 
-## Document Description
+## File Description
 
 + `include` contains all the header files.
 
@@ -35,6 +35,7 @@
   + `tet_armadillo` tests the tetrahedral mesh model *Armadillo219K.msh*, which has 219k nodes and takes about 30 minutes to solve using the Eigen library and only 5 minutes using the CHOLMOD library.
   + `hex_smallCube` tests a small cube model consisting of 27 small hexahedra and verified the correctness using matlab.
   + `hex_cube` tests a larger cube model consisting of 512 hexahedra with a total of 729 nodes.
+  + `hex_bunny7k` tests a bunny model consisting of 7k hexahedra with a total of 9k nodes.
 
 ## Compile and Run
 
@@ -143,4 +144,24 @@ Compiling:
 ### Spatial 8-node Hexahedron Unit
 
 The analysis process is similar to the above process.
+
+## Simulation Results
+
+1. *tet_bunny* 
+
+   ![comparison_tet_bunny](./tests/tet_bunny/image/comparison_tet_bunny.jpg)
+
+   This is a comparison of the results obtained by fixing the bottom of the rabbit model and applying a horizontal force on its ears.
+
+2. *tet_armadillo*
+
+   ![comparison of armadillo](./tests/tet_armadillo/image/comparison.jpg)
+
+   This is a comparison of the results obtained by fixing the lower limbs of the model and applying a horizontal inward force on its hands.
+
+3. *hex_bunny7k*
+
+   ![comparison_bunny7k](./tests/hex_bunny7k/image/comparison_bunny7k.jpg)
+
+   This is also a comparison of the results obtained by fixing the bottom of the rabbit model and applying a horizontal force on its ears.
 

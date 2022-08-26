@@ -17,9 +17,9 @@ void conditionProcess(std::string filePath, std::string condPath){
     std::vector<int> bottom_numb;
     std::vector<int> top_numb;
     for(int i=0; i<TV.rows(); ++i){
-        if(TV(i,1) == 0)
+        if(TV(i,1) < 0.1)
             bottom_numb.push_back(i);
-        if(TV(i,1) == 1)
+        if(TV(i,1) > 2.3)
             top_numb.push_back(i);
     }
     for(auto i : bottom_numb){
@@ -30,7 +30,7 @@ void conditionProcess(std::string filePath, std::string condPath){
     for(auto i : top_numb){
         out << i << " " << 0 << " " << 0 << " " << 0 << " " 
             << 0 << " " << 0 << " " << 0 << " "
-            << 5e6 << " " << 0 << " " << 0 << std::endl;
+            << 2e5 << " " << 0 << " " << 0 << std::endl;
     }
     out.close();
 }
@@ -45,7 +45,7 @@ int main()
     PyRun_SimpleString("import processVTK");
     PyRun_SimpleString("processVTK.transHexFile()");
     
-    std::string filePath = "./input/cube.in";
+    std::string filePath = "./input/bunny7k.in";
     std::string condPath = "./input/condition.in";
     conditionProcess(filePath, condPath);
 

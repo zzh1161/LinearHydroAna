@@ -74,5 +74,6 @@
         "core": "cpp",
         "eigen": "cpp",
         "dense": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": false
 }

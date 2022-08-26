@@ -34,7 +34,7 @@ bool pre_condition_process_bunny(std::string filePath, std::string condPath)
     for(auto i : top_numb){
         out << i << " " << 0 << " " << 0 << " " << 0 << " " 
             << 0 << " " << 0 << " " << 0 << " "
-            << 5e6 << " " << 0 << " " << 0 << std::endl;
+            << 2e5 << " " << 0 << " " << 0 << std::endl;
     }
 
     out.close();
