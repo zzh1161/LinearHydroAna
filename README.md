@@ -6,28 +6,18 @@
 
 + `include` contains all the header files.
 
-  + `info.hpp` contains some macro definitions.
-
-  + `LinSysSolver.hpp` defines an abstract base class that stores sparse matrices in CSR format for the assembly of stiffness matrices and the solution of linear systems.
-  
-    `EigenLibSolver.hpp` and `CHOLMODSolver.hpp` are the corresponding inherited classes, representing the use of the Eigen library or CHOLMOD library to solve.
-    
-  + `readTetMesh.hpp` defines the function to read the tetrahedral mesh.msh file.
-  
-    `readHexMesh.hpp` defines the function to read the hexahedral mesh .in files, where the .in files are parsed from the .vtk files.
-  
+  + `info.hpp` contains some macro definitions.  
+  + `LinSysSolver.hpp` defines an abstract base class that stores sparse matrices in CSR format for the assembly of stiffness matrices and the solution of linear systems.  
+    `EigenLibSolver.hpp` and `CHOLMODSolver.hpp` are the corresponding inherited classes, representing the use of the Eigen library or CHOLMOD library to solve.  
+  + `readTetMesh.hpp` defines the function to read the tetrahedral mesh.msh file.  
+    `readHexMesh.hpp` defines the function to read the hexahedral mesh .in files, where the .in files are parsed from the .vtk files.  
     `readCondition.hpp` defines function to read boundary conditions and other information, with requirements for the input file format.
-  
-  + `shapeInterface.hpp` defines the abstract base class for the grid.
-  
-    `tet4nodeEle.hpp` is an inherited 4-node tetrahedron class.
-  
+  + `shapeInterface.hpp` defines the abstract base class for the grid.  
+    `tet4nodeEle.hpp` is an inherited 4-node tetrahedron class.  
     `hex8nodeEle.hpp` is an inherited 8-node hexahedron class.
-  
-  + `tet4nodeSolver.hpp` encapsulates the finite element analysis process of a tetrahedral mesh model.
-  
-    `hex8nodeSolver.hpp` encapsulates the finite element analysis process of a hexahedral mesh model.
-  
+  + `tet4nodeSolver.hpp` encapsulates the finite element analysis process of a tetrahedral mesh model.  
+    `hex8nodeSolver.hpp` encapsulates the finite element analysis process of a hexahedral mesh model.  
+
 + `tests` contains all test examples.
 
   + `tet_cube` tests a simple mesh model with 8 vertices and 8 tetrahedra, and the correctness was verified by a matlab program.
