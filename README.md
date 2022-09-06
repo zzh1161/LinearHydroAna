@@ -163,5 +163,10 @@ The analysis process is similar to the above process.
 
    ![comparison_bunny7k](./tests/hex_bunny7k/image/comparison_bunny7k.jpg)
 
-   This is also a comparison of the results obtained by fixing the bottom of the rabbit model and applying a horizontal force on its ears.
+   This is a comparison of the results obtained by fixing the bottom of the rabbit model(with about 7k nodes) and applying a horizontal force on its ears.
 
+4. *hex_bunny10w*
+
+    ![comparison_bunny10w](./tests/hex_bunny10w/image/comparison_bunny10w.jpg)
+
+    This is a comparison of the results obtained by fixing the bottom of the rabbit model(with about 110k nodes) and applying a horizontal force on its ears.

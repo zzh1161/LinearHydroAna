@@ -97,6 +97,7 @@ void hex8nodeSolver(std::string filePath, std::string condPath, VectorXr &result
     std::cout << "Set boundary conditions and RHS successfully!" << std::endl;
 
     /* Solve the linear system */
+    hexes.clear();
     LHsolver->factorize();
     LHsolver->solve(rhs, result_uvw);
     std::cout << "Solve the linear system successfully!" << std::endl;
